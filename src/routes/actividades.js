@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router =  Router();
-const {getActividades} = require('../controllers/actividades.controller');
+const actividadesController = require('../controllers/actividades.controller');
 
-router.get('/actividades', getActividades);
+router.get('/actividades', actividadesController.getActividades);
 
 module.exports = router;
