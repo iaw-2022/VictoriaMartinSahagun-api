@@ -43,7 +43,7 @@ router.get('/:id', comidasController.getComidaById);
 
 /**
  * @swagger
- * /comidas/{dia}:
+ * /comidas/dia/{dia}:
  *   get:
  *     description: Utilizada para solicitar las comidas que se realizan en un dia.
  *     tags: 
@@ -63,6 +63,6 @@ router.get('/:id', comidasController.getComidaById);
  *       '404':
  *         description: Not found
  */
-router.get('/:dia', comidasController.getComidaByDay);
+router.get('/dia/:dia', comidasController.getComidaByDay);
 
 module.exports = router;

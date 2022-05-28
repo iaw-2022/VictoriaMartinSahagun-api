@@ -43,7 +43,7 @@ router.get('/:id', actividadesController.getActividadById);
 
 /**
  * @swagger
- * /actividades/{dia}:
+ * /actividades/dia/{dia}:
   *   get:
  *     description: Utilizada para solicitar las actividades que se realizan en un dia.
  *     tags: 
@@ -63,6 +63,6 @@ router.get('/:id', actividadesController.getActividadById);
  *       '404':
  *         description: Not found
  */
-router.get('/:dia', actividadesController.getActividadByDay);
+router.get('/dia/:dia', actividadesController.getActividadByDay);
 
 module.exports = router;
