@@ -33,7 +33,7 @@ const getReservaActividadByCabanaId = async (req, res) => {
 const createReservaActividad = async (req, res) => {
     try{
         const {actividad_id, cabana_id, cantidad_personas} = req.body;
-        const response = await db.query('INSERT INTO reservas_actividades(actividad_id, cabana_id, cantidad_personas) VALUES ($1, $2, $3)',
+        const response = await db.query('INSERT INTO reservas_actividades(actividad_id, cabana_id, cantidad_personas) VALUES ($1,$2,$3)',
         [actividad_id,cabana_id,cantidad_personas]);
         res.status(201).json({succes: 'true'});
     }catch(error){
@@ -46,8 +46,8 @@ const createReservaActividad = async (req, res) => {
 
 const updateCantidadInReservaActividad = async (req, res) => {
     try{
-        if(!isNaN(req.params.id)){
-            const {id, cantidad_personas} = req.body;
+        const {id, cantidad_personas} = req.body;
+        if(!isNaN(id)){
             const response = await db.query('UPDATE reservas_actividades SET cantidad_personas = $1 WHERE id = $2',
             [cantidad_personas, id]);
             res.status(201).json({succes: 'true'});
@@ -55,7 +55,9 @@ const updateCantidadInReservaActividad = async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(404).json({error: 'failed to update'});
+        res.status(404).json({
+            error: 'failed to update',
+            description: error.message});
     }
 };
 
@@ -69,7 +71,9 @@ const deleteReservaActividad = async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(404).json({error: 'failed to delete'});
+        res.status(404).json({
+            error: 'failed to delete',
+            description: error.message});
     }
 };
 

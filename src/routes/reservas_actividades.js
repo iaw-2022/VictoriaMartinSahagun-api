@@ -67,13 +67,13 @@ router.get('/cabana/:id', reservasActividadesController.getReservaActividadByCab
  *             - cabana_id
  *             - actividad_id
  *             - cantidad_personas
- *         properties:
- *           cabana_id:
- *             type: integer
- *           actividad_id:
- *             type: integer
- *           cantidad_personas:
- *             type: integer
+ *           properties:
+ *             cabana_id:
+ *               type: integer
+ *             actividad_id:
+ *               type: integer
+ *             cantidad_personas:
+ *               type: integer
  *     responses:
  *       '201':
  *         description: Sucessful creation
@@ -82,8 +82,55 @@ router.get('/cabana/:id', reservasActividadesController.getReservaActividadByCab
  */
 router.post('/', reservasActividadesController.createReservaActividad);
 
-router.put('/update/:id', reservasActividadesController.updateCantidadInReservaActividad);
+/**
+ * @swagger
+ * /reservas_actividades/{id}:
+ *   put:
+ *     description: Utilizada para modificar una reserva realizada por una cabaña.
+ *     tags: 
+ *       - Reservas_actividades
+ *     parameters:
+ *       - in: body
+ *         name: reserva_actividad
+ *         description: Reserva realizada por una cabana.
+ *         schema:
+ *           type: object
+ *           required:
+ *             - id
+ *             - cantidad_personas
+ *           properties:
+ *             id:
+ *               type: integer
+ *             cantidad_personas:
+ *               type: integer
+ *     responses:
+ *       '201':
+ *         description: Sucessful update
+ *       '404':
+ *         description: Failed to update
+ */
+router.put('/:id', reservasActividadesController.updateCantidadInReservaActividad);
 
-router.delete('/delete/:id', reservasActividadesController.deleteReservaActividad);
+/**
+ * @swagger
+ * /reservas_actividades/{id}:
+ *   delete:
+ *     description: Utilizada para eliminar una reserva realizada por una cabaña.
+ *     tags: 
+ *       - Reservas_actividades
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la reserva
+ *     responses:
+ *       '201':
+ *         description: Sucessful delete
+ *       '404':
+ *         description: Failed to delete
+ */
+router.delete('/:id', reservasActividadesController.deleteReservaActividad);
 
 module.exports = router;
