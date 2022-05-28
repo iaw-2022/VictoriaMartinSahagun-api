@@ -4,8 +4,8 @@ const path = require("path")
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'United Real Estate API',
-            description: 'API Docs',
+            title: 'Balcon del Golf API',
+            description: 'Documentacion de la API',
             servers: [constante.SERVER]
         }
     },
