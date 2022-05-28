@@ -1,7 +1,7 @@
 const db =  require('../database');
 
-const getActividades = async(req, res) =>{
-    const response = await db.query('SELECT * FROM actividades');
+const getComidas = async(req, res) =>{
+    const response = await db.query('SELECT * FROM comidas');
     
     if(response.rows.length > 0){
         res.status(200).json(response.rows);
@@ -10,10 +10,10 @@ const getActividades = async(req, res) =>{
     }
 }
 
-const getActividadById = async (req, res) => {
+const getComidaById = async (req, res) => {
     const id = req.params.id;
     if(!isNaN(id)){
-        const response = await db.query('SELECT * FROM actividades WHERE id = $1',[id]);
+        const response = await db.query('SELECT * FROM comidas WHERE id = $1',[id]);
 
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
@@ -25,10 +25,10 @@ const getActividadById = async (req, res) => {
     }
 };
 
-const getActividadByDay = async (req, res) => {
+const getComidaByDay = async (req, res) => {
     const dia = req.params.dia;
     if(typeof dia === 'string'){
-        const response = await db.query('SELECT * FROM actividades WHERE dia = $1',[dia]);
+        const response = await db.query('SELECT * FROM comidas WHERE dia = $1',[dia]);
 
         if(response.rows.length > 0){
             res.status(200).json(response.rows[0]);
@@ -41,7 +41,7 @@ const getActividadByDay = async (req, res) => {
 };
 
 module.exports = {
-    getActividades,
-    getActividadById,
-    getActividadByDay
+    getComidas,
+    getComidaById,
+    getComidaByDay
 }
