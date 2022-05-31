@@ -38,9 +38,7 @@ const createReservaActividad = async (req, res) => {
         res.status(201).json({succes: 'true'});
     }catch(error){
         res.status(404).json({
-            error: 'failed to create',
-            description: error.message
-        });
+            error: 'failed to create'});
     }
 };
 
