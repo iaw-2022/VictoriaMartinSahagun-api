@@ -78,7 +78,7 @@ router.get('/cabana/:id', reservasActividadesController.getReservaActividadByCab
  *       '201':
  *         description: Sucessful creation
  *       '404':
- *         description: Failed to create
+ *         description: Not found
  */
 router.post('/', reservasActividadesController.createReservaActividad);
 
@@ -107,7 +107,7 @@ router.post('/', reservasActividadesController.createReservaActividad);
  *       '201':
  *         description: Sucessful update
  *       '404':
- *         description: Failed to update
+ *         description: Not found
  */
 router.put('/:id', reservasActividadesController.updateCantidadInReservaActividad);
 
@@ -129,7 +129,7 @@ router.put('/:id', reservasActividadesController.updateCantidadInReservaActivida
  *       '201':
  *         description: Sucessful delete
  *       '404':
- *         description: Failed to delete
+ *         description: Not found
  */
 router.delete('/:id', reservasActividadesController.deleteReservaActividad);
 

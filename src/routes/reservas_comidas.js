@@ -18,11 +18,11 @@ const reservasComidasController = require('../controllers/reservas_comidas.contr
  *         description: ID de la reserva
  *     responses:
  *       '200':
- *         description: Respuesta exitosa
+ *         description: Sucessful response
  *       '400':
- *         description: Parametro invalido
+ *         description: Invalid parameter
  *       '404':
- *         description: No encontrado
+ *         description: Not found
  */
  router.get('/:id', reservasComidasController.getReservaComidaById);
 
@@ -42,11 +42,11 @@ const reservasComidasController = require('../controllers/reservas_comidas.contr
  *         description: ID de la cabana que realizo la reserva
  *     responses:
  *       '200':
- *         description: Respuesta exitosa
+ *         description: Sucessful response
  *       '400':
- *         description: Parametro invalido
+ *         description: Invalid parameter
  *       '404':
- *         description: No encontrado
+ *         description: Not found
  */
 router.get('/cabana/:id', reservasComidasController.getReservaComidaByCabanaId);
 
@@ -78,7 +78,7 @@ router.get('/cabana/:id', reservasComidasController.getReservaComidaByCabanaId);
  *       '201':
  *         description: Sucessful creation
  *       '404':
- *         description: Failed to create
+ *         description: Not found
  */
 router.post('/', reservasComidasController.createReservaComida);
 
@@ -107,7 +107,7 @@ router.post('/', reservasComidasController.createReservaComida);
  *       '201':
  *         description: Sucessful update
  *       '404':
- *         description: Failed to update
+ *         description: Not found
  */
 router.put('/:id', reservasComidasController.updateCantidadInReservaComida);
 
@@ -129,7 +129,7 @@ router.put('/:id', reservasComidasController.updateCantidadInReservaComida);
  *       '201':
  *         description: Sucessful delete
  *       '404':
- *         description: Failed to delete
+ *         description: Not found
  */
 router.delete('/:id', reservasComidasController.deleteReservaComida);
 
