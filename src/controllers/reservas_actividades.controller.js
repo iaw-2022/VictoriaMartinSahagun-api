@@ -37,7 +37,7 @@ const createReservaActividad = async (req, res) => {
         [actividad_id,cabana_id,cantidad_personas]);
         res.status(201).json({succes: 'true'});
     }catch(error){
-        res.status(405).json({
+        res.status(404).json({
             error: 'failed to create',
             description: error.message
         });
@@ -55,7 +55,7 @@ const updateCantidadInReservaActividad = async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(406).json({
+        res.status(404).json({
             error: 'failed to update'});
     }
 };
@@ -70,7 +70,7 @@ const deleteReservaActividad = async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(407).json({
+        res.status(404).json({
             error: 'failed to delete'});
     }
 };

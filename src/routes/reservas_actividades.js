@@ -1,6 +1,12 @@
 const express = require('express');
 const router =  express.Router();
 const reservasActividadesController = require('../controllers/reservas_actividades.controller');
+const auth = require('../auth');
+
+//auth
+router.get('/authorized',auth, function (req, res) {
+    res.send('Secured Resource');
+});
 
 /**
  * @swagger
@@ -55,6 +61,8 @@ router.get('/cabana/:id', reservasActividadesController.getReservaActividadByCab
  * /reservas_actividades:
  *   post:
  *     description: Utilizada para crear una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_actividades
  *     parameters:
@@ -80,13 +88,15 @@ router.get('/cabana/:id', reservasActividadesController.getReservaActividadByCab
  *       '404':
  *         description: Not found
  */
-router.post('/', reservasActividadesController.createReservaActividad);
+router.post('/', auth, reservasActividadesController.createReservaActividad);
 
 /**
  * @swagger
  * /reservas_actividades/{id}:
  *   put:
  *     description: Utilizada para modificar una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_actividades
  *     parameters:
@@ -109,13 +119,15 @@ router.post('/', reservasActividadesController.createReservaActividad);
  *       '404':
  *         description: Not found
  */
-router.put('/:id', reservasActividadesController.updateCantidadInReservaActividad);
+router.put('/:id', auth, reservasActividadesController.updateCantidadInReservaActividad);
 
 /**
  * @swagger
  * /reservas_actividades/{id}:
  *   delete:
  *     description: Utilizada para eliminar una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_actividades
  *     parameters:
@@ -131,6 +143,6 @@ router.put('/:id', reservasActividadesController.updateCantidadInReservaActivida
  *       '404':
  *         description: Not found
  */
-router.delete('/:id', reservasActividadesController.deleteReservaActividad);
+router.delete('/:id', auth, reservasActividadesController.deleteReservaActividad);
 
 module.exports = router;

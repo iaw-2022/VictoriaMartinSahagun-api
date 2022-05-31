@@ -1,6 +1,12 @@
 const express = require('express');
 const router =  express.Router();
 const reservasComidasController = require('../controllers/reservas_comidas.controller');
+const auth = require('../auth');
+
+//auth
+router.get('/authorized',auth, function (req, res) {
+    res.send('Secured Resource');
+});
 
 /**
  * @swagger
@@ -55,6 +61,8 @@ router.get('/cabana/:id', reservasComidasController.getReservaComidaByCabanaId);
  * /reservas_comidas:
  *   post:
  *     description: Utilizada para crear una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_comidas
  *     parameters:
@@ -80,13 +88,15 @@ router.get('/cabana/:id', reservasComidasController.getReservaComidaByCabanaId);
  *       '404':
  *         description: Not found
  */
-router.post('/', reservasComidasController.createReservaComida);
+router.post('/', auth, reservasComidasController.createReservaComida);
 
 /**
  * @swagger
  * /reservas_comidas/{id}:
  *   put:
  *     description: Utilizada para modificar una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_comidas
  *     parameters:
@@ -109,13 +119,15 @@ router.post('/', reservasComidasController.createReservaComida);
  *       '404':
  *         description: Not found
  */
-router.put('/:id', reservasComidasController.updateCantidadInReservaComida);
+router.put('/:id', auth, reservasComidasController.updateCantidadInReservaComida);
 
 /**
  * @swagger
  * /reservas_comidas/{id}:
  *   delete:
  *     description: Utilizada para eliminar una reserva realizada por una cabaña.
+ *     security: 
+ *       - bearerAuth: []
  *     tags: 
  *       - Reservas_comidas
  *     parameters:
@@ -131,6 +143,6 @@ router.put('/:id', reservasComidasController.updateCantidadInReservaComida);
  *       '404':
  *         description: Not found
  */
-router.delete('/:id', reservasComidasController.deleteReservaComida);
+router.delete('/:id', auth, reservasComidasController.deleteReservaComida);
 
 module.exports = router;

@@ -37,7 +37,7 @@ const createReservaComida = async (req, res) => {
         [comida_id,cabana_id,cantidad_personas]);
         res.status(201).json({succes: 'true'});
     }catch(error){
-        res.status(405).json({
+        res.status(404).json({
             error: 'failed to create'});
     }
 };
@@ -53,7 +53,7 @@ const updateCantidadInReservaComida= async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(406).json({
+        res.status(404).json({
             error: 'failed to update'});
     }
 };
@@ -68,7 +68,7 @@ const deleteReservaComida = async (req, res) => {
             res.status(400).json({error: 'invalid parameter'});
         }
     }catch(error){
-        res.status(407).json({error: 'failed to delete'});
+        res.status(404).json({error: 'failed to delete'});
     }
 };
 
