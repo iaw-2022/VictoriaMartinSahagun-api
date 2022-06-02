@@ -100,17 +100,20 @@ router.post('/', auth, reservasComidasController.createReservaComida);
  *     tags: 
  *       - Reservas_comidas
  *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID de la reserva
  *       - in: body
  *         name: reserva_comida
  *         description: Reserva realizada por una cabana.
  *         schema:
  *           type: object
  *           required:
- *             - id
  *             - cantidad_personas
  *           properties:
- *             id:
- *               type: integer
  *             cantidad_personas:
  *               type: integer
  *     responses:

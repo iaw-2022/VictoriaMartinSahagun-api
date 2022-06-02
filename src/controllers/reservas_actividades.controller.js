@@ -43,8 +43,9 @@ const createReservaActividad = async (req, res) => {
 };
 
 const updateCantidadInReservaActividad = async (req, res) => {
+    const id = req.params.id;
     try{
-        const {id, cantidad_personas} = req.body;
+        const {cantidad_personas} = req.body;
         if(!isNaN(id)){
             const response = await db.query('UPDATE reservas_actividades SET cantidad_personas = $1 WHERE id = $2',
             [cantidad_personas, id]);
