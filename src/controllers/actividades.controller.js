@@ -27,7 +27,7 @@ const getActividadById = async (req, res) => {
 
 const getActividadByDay = async (req, res) => {
     const dia = req.params.dia;
-    if(typeof dia === 'string'){
+    if(isNaN(dia)){
         const response = await db.query('SELECT * FROM actividades WHERE dia = $1',[dia]);
 
         if(response.rows.length > 0){
