@@ -6,7 +6,7 @@ const comidasController = require('../controllers/comidas.controller');
  * @swagger
  * /comidas:
  *   get:
- *     description: U   .
+ *     description: Utilizada para solicitar todas las comidas.
  *     tags: 
  *       - Comidas
   *     responses:
