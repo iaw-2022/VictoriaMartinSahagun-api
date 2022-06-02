@@ -1,0 +1,34 @@
+{
+  "name": "proyecto-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iaw-2022/VictoriaMartinSahagun-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iaw-2022/VictoriaMartinSahagun-api/issues"
+  },
+  "homepage": "https://github.com/iaw-2022/VictoriaMartinSahagun-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-jwt": "^7.7.3",
+    "jwks-rsa": "^2.1.3",
+    "pg": "^8.7.3",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
