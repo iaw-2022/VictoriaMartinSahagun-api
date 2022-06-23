@@ -54,7 +54,7 @@ router.get('/authorized',auth, function (req, res) {
  *       '404':
  *         description: Not found
  */
-router.get('/huseped/:id', reservasComidasController.getReservaComidaByHuespedId);
+router.get('/huesped/:id', reservasComidasController.getReservaComidaByHuespedId);
 
 /**
  * @swagger
