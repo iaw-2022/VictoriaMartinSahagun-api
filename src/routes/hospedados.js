@@ -6,7 +6,7 @@ const hospedadosController = require('../controllers/hospedados.controller');
  * @swagger
  * /hospedados/{id}:
  *   get:
- *     description: Utilizada para solicitar los datos de un huesped dentro del complejo.
+ *     description: Utilizada para solicitar la cabana de un huesped dentro del complejo.
  *     tags: 
  *       - Hospedados
  *     parameters:
@@ -24,6 +24,6 @@ const hospedadosController = require('../controllers/hospedados.controller');
  *       '404':
  *         description: Not found
  */
- router.get('/:id', hospedadosController.getHospedadosById);
+ router.get('/:id', hospedadosController.getCabanaByIdHuesped);
 
 module.exports = router;

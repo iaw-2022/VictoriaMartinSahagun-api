@@ -15,12 +15,13 @@ const getReservaComidaById = async (req, res) => {
     }
 };
 
-const getReservaComidaByCabanaId = async (req, res) => {
+const getReservaComidaByHuespedId = async (req, res) => {
     const id = req.params.id;
     if(!isNaN(id)){
-        const response = await db.query('SELECT * FROM reservas_comidas WHERE cabana_id = $1',[id]);
+        const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[id]);
 
-        if(response.rows.length > 0){
+        if(cabana.rows.length > 0){
+            const response = await db.query('SELECT * FROM reservas_comidas WHERE cabana_id = $1',[cabana.rows[0].cabana_id]);
             res.status(200).json(response.rows[0]);
         }else{
             res.status(404).json({error: 'not found'});
@@ -75,7 +76,7 @@ const deleteReservaComida = async (req, res) => {
 
 module.exports = {
     getReservaComidaById,
-    getReservaComidaByCabanaId,
+    getReservaComidaByHuespedId,
     createReservaComida,
     updateCantidadInReservaComida,
     deleteReservaComida

@@ -34,14 +34,14 @@ router.get('/authorized',auth, function (req, res) {
 
 /**
  * @swagger
- * /reservas_comidas/cabana/{cabana_id}:
+ * /reservas_comidas/huesped/{huesped_id}:
  *   get:
- *     description: Utilizada para solicitar las reservas de comdias que realizo una cabana.
+ *     description: Utilizada para solicitar las reservas de comdias que realizo un huesped.
  *     tags: 
  *       - Reservas_comidas
  *     parameters:
  *       - in: path
- *         name: cabana_id
+ *         name: huesped_id
  *         schema:
  *           type: integer
  *         required: true
@@ -54,7 +54,7 @@ router.get('/authorized',auth, function (req, res) {
  *       '404':
  *         description: Not found
  */
-router.get('/cabana/:id', reservasComidasController.getReservaComidaByCabanaId);
+router.get('/huseped/:id', reservasComidasController.getReservaComidaByHuespedId);
 
 /**
  * @swagger
