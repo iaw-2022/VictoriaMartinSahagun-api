@@ -5,6 +5,8 @@ const actividades_rutas = require('./routes/actividades');
 const comidas_rutas = require('./routes/comidas');
 const reservas_actividades_rutas = require('./routes/reservas_actividades');
 const reservas_comidas_rutas = require('./routes/reservas_comidas');
+const huespedes_rutas = require('./routes/huespedes');
+const hospedados_rutas = require('./routes/hospedados');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger');
@@ -30,6 +32,8 @@ app.use('/actividades', actividades_rutas);
 app.use('/comidas', comidas_rutas);
 app.use('/reservas_actividades', reservas_actividades_rutas);
 app.use('/reservas_comidas', reservas_comidas_rutas);
+app.use('/hospedados', hospedados_rutas);
+app.use('/huespedes', huespedes_rutas);
 
 //auth
 app.use(function (err, req, res, next) {
