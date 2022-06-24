@@ -22,7 +22,7 @@ const getReservaActividadByHuespedId = async (req, res) => {
 
         if(cabana.rows.length > 0){
             const response = await db.query('SELECT * FROM reservas_actividades WHERE cabana_id = $1',[cabana.rows[0].cabana_id])
-            res.status(200).json(response.rows[0]);
+            res.status(200).json(response.rows);
         }else{
             res.status(404).json({error: 'not found'});
         }
