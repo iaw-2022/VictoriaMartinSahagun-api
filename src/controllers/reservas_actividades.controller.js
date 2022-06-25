@@ -21,7 +21,7 @@ const getReservaActividadByHuespedId = async (req, res) => {
         const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[id]);
 
         if(cabana.rows.length > 0){
-            const response = await db.query('SELECT * FROM (SELECT actividades.id as actividad_id,nombre,localizacion,horario,dia,img,reservas_actividades.id as reserva_id,cabana_id,cantidad_personas FROM actividades JOIN reservas_actividades ON actividades.id=actividad_id) WHERE cabana_id = $1;',[cabana.rows[0].cabana_id])
+            const response = await db.query('SELECT * FROM (SELECT actividades.id as actividad_id,nombre,localizacion,horario,dia,img,reservas_actividades.id as reserva_id,cabana_id,cantidad_personas FROM actividades JOIN reservas_actividades ON actividades.id=actividad_id) as reservas WHERE cabana_id = $1;',[cabana.rows[0].cabana_id])
             res.status(200).json(response.rows);
         }else{
             res.status(404).json({error: 'not found'});
