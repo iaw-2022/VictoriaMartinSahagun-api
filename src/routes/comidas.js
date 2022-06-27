@@ -19,7 +19,7 @@ router.get('/', comidasController.getComidas);
 
 /**
  * @swagger
- * /comidas/huesped/{id}:
+ * /comidas/huesped/{huesped_id}:
  *   get:
  *     description: Utilizada para solicitar todas las comidas que no fueron reservadas por un huesped.
  *     tags: 
@@ -37,7 +37,7 @@ router.get('/', comidasController.getComidas);
  *       '404':
  *         description: Not found
  */
- router.get('/huesped/:id', comdiasController.getComidasSinReservaByHuespedId);
+ router.get('/huesped/:id', comidasController.getComidasSinReservaByHuespedId);
 
 /**
  * @swagger
