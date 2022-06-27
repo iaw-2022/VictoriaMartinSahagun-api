@@ -24,7 +24,7 @@ router.get('/', actividadesController.getActividades);
  *     description: Utilizada para solicitar todas las actividades que no fueron reservadas por un huesped.
  *     tags: 
  *       - Actividades
- *      parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         schema:

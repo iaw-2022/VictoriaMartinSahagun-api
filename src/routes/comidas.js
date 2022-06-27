@@ -24,7 +24,7 @@ router.get('/', comidasController.getComidas);
  *     description: Utilizada para solicitar todas las comidas que no fueron reservadas por un huesped.
  *     tags: 
  *       - Comidas
- *      parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         schema:
