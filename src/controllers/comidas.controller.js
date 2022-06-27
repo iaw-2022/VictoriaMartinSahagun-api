@@ -44,9 +44,8 @@ const getComidasSinReservaByHuespedId = async (req, res) => {
     const id = req.params.id;
     if(!isNaN(id)){
         const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[id]);
-        const response = await db.query(
-            'SELECT id,nombre,descripcion,tipo,img FROM (SELECT comidas.id as id,nombre,descripcion,tipo,img,reservas_comidas.id as cabana_id  FROM comidas JOIN reservas_comidas ON reservas_comidas.comida_id=comidas.id) as comidas_reservas WHERE cabana_id!=$1'
-            ,[cabana.rows[0].cabana_id]);
+        const comidas_reservadas = await db.query('SELECT comida_id FROM reservas_comidas WHERE comida_id = $1',[cabana.rows[0].cabana_id]);
+        const response = await db.query('SELECT * FROM comidas WHERE id!=$1',[comidas_reservadas.rows[0].comida_id]);
 
         if(response.rows.length > 0){
             res.status(200).json(response.rows);
