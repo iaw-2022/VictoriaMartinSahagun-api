@@ -44,9 +44,7 @@ const getActividadesSinReservaByHuespedId = async (req, res) => {
     const id = req.params.id;
     if(!isNaN(id)){
         const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[id]);
-        const actividades_reservadas = await db.query('SELECT actividad_id FROM reservas_actividades WHERE cabana_id = $1',[cabana.rows[0].cabana_id]);
-        const response = await db.query('SELECT * FROM actividades WHERE id!=$1',[actividades_reservadas.rows[0].actividad_id]);
-
+        const response = await db.query('SELECT * FROM actividades WHERE id!=(SELECT actividad_id FROM reservas_actividades WHERE cabana_id = $1)',[cabana.rows[0].cabana_id])
         if(response.rows.length > 0){
             res.status(200).json(response.rows);
         }else{
