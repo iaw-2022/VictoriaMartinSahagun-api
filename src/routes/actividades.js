@@ -19,7 +19,7 @@ router.get('/', actividadesController.getActividades);
 
 /**
  * @swagger
- * /actividades/huesped/{huesped_id}:
+ * /actividades/huesped/{id}:
  *   get:
  *     description: Utilizada para solicitar todas las actividades que no fueron reservadas por un huesped.
  *     tags: 
