@@ -19,25 +19,20 @@ router.get('/', actividadesController.getActividades);
 
 /**
  * @swagger
- * /actividades/huesped/{id}:
+ * /actividades/huesped/:
  *   get:
  *     description: Utilizada para solicitar todas las actividades que no fueron reservadas por un huesped.
  *     tags: 
  *       - Actividades
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: ID del huesped
+ *     security: 
+ *       - bearerAuth: []
  *     responses:
  *       '200':
  *         description: Sucessful response
  *       '404':
  *         description: Not found
  */
- router.get('/huesped/:id', actividadesController.getActividadesSinReservaByHuespedId);
+ router.get('/huesped/', actividadesController.getActividadesSinReservaByHuespedToken);
 
 /**
  * @swagger

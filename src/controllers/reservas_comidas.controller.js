@@ -1,4 +1,5 @@
 const db =  require('../database');
+const getUserInfo = require('../utils/auth').getUserInfoFromToken;
 
 const getReservaComidaById = async (req, res) => {
     const id = req.params.id;
@@ -15,21 +16,35 @@ const getReservaComidaById = async (req, res) => {
     }
 };
 
-const getReservaComidaByHuespedId = async (req, res) => {
-    const id = req.params.id;
-    if(!isNaN(id)){
-        const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[id]);
+const getReservaComidaByHuespedToken = async (req, res) => {
+    try{
+        const info = await getUserInfo(req);
+        await findId(info).then(
+            async (huesped_id) => {
+                const cabana = await db.query('SELECT cabana_id FROM hospedados WHERE huesped_id = $1',[huesped_id]);
+                if(cabana.rows.length > 0){
+                    const response = await db.query('SELECT * FROM (SELECT comidas.id as comida_id,nombre,tipo,dia,img,reservas_comidas.id as reserva_id,cabana_id,cantidad_personas FROM comidas JOIN reservas_comidas ON comidas.id=comida_id) as reservas WHERE cabana_id = $1;',[cabana.rows[0].cabana_id])
+                    res.status(200).json(response.rows);
+                }else{
+                    res.status(404).json({error: 'not found'});
+                }
+            }
+        )
 
-        if(cabana.rows.length > 0){
-            const response = await db.query('SELECT * FROM (SELECT comidas.id as comida_id,nombre,tipo,dia,img,reservas_comidas.id as reserva_id,cabana_id,cantidad_personas FROM comidas JOIN reservas_comidas ON comidas.id=comida_id) as reservas WHERE cabana_id = $1;',[cabana.rows[0].cabana_id])
-            res.status(200).json(response.rows);
-        }else{
-            res.status(404).json({error: 'not found'});
-        }
-    }else{
-        res.status(400).json({error: 'invalid parameter'});
+    }catch(Error){
+        res.status(400).json({error: Error.message});
     }
 };
+
+async function findId (info){
+    let huesped_id = await db.query ('SELECT id from huespedes WHERE email = $1', [info.email]).
+    then((huesped_id) => {
+        if (huesped_id.rowCount <= 0){
+            return db.query('INSERT INTO huespedes (nombre, email) VALUES ($1,$2) returning id', [info.name, info.email]).then((huesped_id) => huesped_id.rows[0].id)
+        }else return huesped_id.rows[0].id
+    })
+    return huesped_id
+}
 
 const createReservaComida = async (req, res) => {
     try{
@@ -76,7 +91,7 @@ const deleteReservaComida = async (req, res) => {
 
 module.exports = {
     getReservaComidaById,
-    getReservaComidaByHuespedId,
+    getReservaComidaByHuespedToken,
     createReservaComida,
     updateCantidadInReservaComida,
     deleteReservaComida

@@ -4,18 +4,13 @@ const hospedadosController = require('../controllers/hospedados.controller');
 
 /**
  * @swagger
- * /hospedados/{id}:
+ * /hospedados/:
  *   get:
  *     description: Utilizada para solicitar la cabana de un huesped dentro del complejo.
  *     tags: 
  *       - Hospedados
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: ID del huesped
+ *     security: 
+ *       - bearerAuth: []
  *     responses:
  *       '200':
  *         description: Sucessful response
@@ -24,6 +19,6 @@ const hospedadosController = require('../controllers/hospedados.controller');
  *       '404':
  *         description: Not found
  */
- router.get('/:id', hospedadosController.getCabanaByIdHuesped);
+ router.get('/', hospedadosController.getCabanaByIdHuesped);
 
 module.exports = router;
